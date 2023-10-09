@@ -1,28 +1,28 @@
-//Codigo Del Servidor
-//Importar Express y mongoose para el servidor y la BD
 const express = require('express');
 const mongoose = require('mongoose');
-//Importar dotenv para las variables de entorno definidas por mi
 require('dotenv').config();
 
-
-//importar app y port
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 3000;
 
-//middleware (se usa para consultas y guardar informacion en la BD antes de pasar a las consultas)
+//routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+//Importar rutas
+const fichaRoutes = require('./routes/ficha');
+
 app.use(express.json());
-//middleware Cors
 
+//middleware de montaje de rutas (se utilizan para definir las rutas)
+app.use("/api", fichaRoutes);
 
-//Mongodb connection
+//mongodb connection
 mongoose
 .connect(process.env.MONGODB_URI)
 .then(() => console.log('DB Connected'))
 .catch((error) => console.error('DB Connection Error'));
 
-//usar app.listen para que el servidor escuche
-//Listen on port
-app.listen(port, () => console.log('server Listening on port', port));
 
-
+app.listen(3000, () =>  console.log('Server is running on port', port));
