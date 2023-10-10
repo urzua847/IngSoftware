@@ -1,5 +1,5 @@
 //crear modelo de ficha social
-// Path: src\models\fichaSocial.js
+// Path: src\models\ficha.js
 const mongoose = require("mongoose");
 
 const fichaSchema = mongoose.Schema({
@@ -7,6 +7,11 @@ const fichaSchema = mongoose.Schema({
   nombre: {
     type: String,
     required: true,
+  },
+  rut: {
+    type: Number,
+    required: true,
+    unique: true
   },
   fechaNacimiento: {
     type: Date,
