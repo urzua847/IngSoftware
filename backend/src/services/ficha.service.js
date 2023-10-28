@@ -50,7 +50,7 @@ async function createFicha(ficha) {
         observaciones, 
       } = ficha;
 
-    const fichaFound = await ficha.findOne({ email: ficha.email });
+    const fichaFound = await Ficha.findOne({ email: ficha.email });
     if (fichaFound) return [null, "El usuario ya existe"];
 
     const newFicha = new Ficha({
@@ -133,7 +133,7 @@ async function updateFicha(id, ficha) {
         observaciones,
      } = ficha;
 
-    const matchPassword = await ficha.comparePassword(
+    const matchPassword = await Ficha.comparePassword(
       password,
       fichaFound.password,
     );
@@ -142,7 +142,7 @@ async function updateFicha(id, ficha) {
       return [null, "La contraseña no coincide"];
     }
 
-    const fichaUpdated = await ficha.findByIdAndUpdate(
+    const fichaUpdated = await Ficha.findByIdAndUpdate(
       id,
       {
         nombre,

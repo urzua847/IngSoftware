@@ -1,8 +1,8 @@
 "use strict";
 
 const { respondSuccess, respondError } = require("../utils/resHandler");
- const FichaService = require("../services/ficha.service");
-const { fichaBodySchema, fichaIdSchema } = require("../schema/ficha.schema");
+const fichaService = require("../services/ficha.service.js");
+const { fichaBodySchema, fichaIdSchema } = require("../schema/ficha.schema.js");
 const { handleError } = require("../utils/errorHandler");
 
 /**

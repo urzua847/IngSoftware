@@ -4,7 +4,7 @@ const express = require("express");
 
 /** Enrutador de usuarios  */
 const userRoutes = require("./user.routes.js");
-const fichasRoutes = require("./user.routes.js");
+const fichasRoutes = require("./ficha.routes.js");
 
 
 /** Enrutador de autenticación */
