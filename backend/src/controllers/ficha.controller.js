@@ -35,7 +35,7 @@ async function createFicha(req, res) {
     const { error: bodyError } = fichaBodySchema.validate(body);
     if (bodyError) return respondError(req, res, 400, bodyError.message);
 
-    const [newFicha, fichaError] = await FichaService.createFicha(body);
+    const [newFicha, fichaError] = await fichaService.createFicha(body);
 
     if (fichaError) return respondError(req, res, 400, fichaError);
     if (!newFicha) {
@@ -60,7 +60,7 @@ async function getFichaById(req, res) {
     const { error: paramsError } = fichaIdSchema.validate(params);
     if (paramsError) return respondError(req, res, 400, paramsError.message);
 
-    const [ficha, errorFicha] = await FichaService.getfichaById(params.id);
+    const [ficha, errorFicha] = await fichaService.getFichaById(params.id);
 
     if (errorFicha) return respondError(req, res, 404, errorFicha);
 
@@ -107,7 +107,7 @@ async function deleteFicha(req, res) {
     const { error: paramsError } = fichaIdSchema.validate(params);
     if (paramsError) return respondError(req, res, 400, paramsError.message);
 
-    const ficha = await FichaService.deleteFicha(params.id);
+    const ficha = await fichaService.deleteFicha(params.id);
     !ficha
       ? respondError(
           req,
