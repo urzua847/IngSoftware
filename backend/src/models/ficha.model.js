@@ -56,8 +56,8 @@ const fichaSchema = mongoose.Schema(
     }],
     // Situacion economica
     ingresos: {
-      tipo: String,
-      cantidad: Number,
+      tipo: { type: String, required: true },
+      cantidad: { type: Number, required: true },
     },
     gastos: {
       tipo: String,
@@ -109,7 +109,10 @@ const fichaSchema = mongoose.Schema(
   },
   );
 
+
+/** Modelo de datos 'Ficha' */
 const Ficha = mongoose.model("Ficha", fichaSchema);
 
+// Exporta el modelo de datos 'Ficha'
 module.exports = Ficha;
 
