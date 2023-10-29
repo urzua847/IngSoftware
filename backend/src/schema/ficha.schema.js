@@ -12,12 +12,12 @@ const fichaBodySchema = Joi.object({
       "string.empty": "El nombre no puede estar vacío.",
       "string.base": "El nombre debe ser de tipo string.",
     }),
-    rut: Joi.string().required().min(8).max(8).messages({
+    rut: Joi.string().required().min(9).max(9).messages({
       "any.required": "El RUT es obligatorio.",
       "string.empty": "El RUT no puede estar vacío.",
       "number.base": "El RUT debe ser de tipo numérico.",
-      "number.min": "El RUT debe der se al menos 8 numeros.",
-      "number.max": "El RUT debe der se a lo mas 8 numeros.",
+      "number.min": "El RUT debe der se al menos 9 numeros.",
+      "number.max": "El RUT debe der se a lo mas 9 numeros.",
     }),
     fechaNacimiento: Joi.date().required().messages({
       "any.required": "La fecha de nacimiento es obligatoria.",
@@ -64,15 +64,30 @@ const fichaBodySchema = Joi.object({
         "any.only": "El estado civil proporcionado no es válido.",
       }),
     conyuge: Joi.object({
-      nombre: Joi.string(),
-      fechaNacimiento: Joi.date(),
-      genero: Joi.string(),
+      nombre: Joi.string().messages({
+        "string.empty": "El nombre no puede estar vacío.",
+      }),
+      fechaNacimiento: Joi.date().messages({
+        "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
+      }),
+      genero: Joi.string().messages({
+        "any.only": "El género proporcionado no es válido.",
+      }),
     }),
     hijos: Joi.array().items(
       Joi.object({
-        nombre: Joi.string(),
-        fechaNacimiento: Joi.date(),
-        genero: Joi.string(),
+        nombre: Joi.string().messages({
+          "string.empty": "El nombre no puede estar vacío.",
+        }),
+        fechaNacimiento: Joi.date().messages({
+          "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
+          "date.empty": "La fecha no puede estar vacía.",
+
+        }),
+        genero: Joi.string().messages({
+          "any.only": "El género proporcionado no es válido.",
+          }),
+
       }),
     ),
     ingresos: Joi.object({

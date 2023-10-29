@@ -4,6 +4,7 @@ const express = require("express");
 
 /** Enrutador de usuarios  */
 const userRoutes = require("./user.routes.js");
+/** Enrutador de fichas sociales  */
 const fichasRoutes = require("./ficha.routes.js");
 const postulacionRoutes = require("./postulacion.routes.js");
 

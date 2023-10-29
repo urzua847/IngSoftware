@@ -1,5 +1,4 @@
-// crear modelo de ficha social
-// Path: src\models\ficha.js
+
 const mongoose = require("mongoose");
 
 const fichaSchema = mongoose.Schema(
@@ -20,14 +19,26 @@ const fichaSchema = mongoose.Schema(
     },
     genero: {
       type: String,
-      enum: ["Masculino", "Femenino", "Otro"], 
+      enum: ["Masculino", "Femenino", "Otro"],
       required: true,
     },
     direccion: {
-      calle: { type: String, required: true },
-      numero: { type: Number, required: true },
-      ciudad: { type: String, required: true },
-      codigoPostal: { type: Number, required: true },
+      calle: {
+        type: String,
+        required: true,
+      },
+      numero: {
+        type: Number,
+        required: true,
+      },
+      ciudad: {
+        type: String,
+        required: true,
+      },
+      codigoPostal: {
+        type: Number,
+        required: true,
+      },
     },
     telefono: {
       type: Number,
@@ -49,15 +60,23 @@ const fichaSchema = mongoose.Schema(
       fechaNacimiento: Date,
       genero: String,
     },
-    hijos: [{
-      nombre: String,
-      fechaNacimiento: Date,
-      genero: String,
-    }],
+    hijos: [
+      {
+        nombre: String,
+        fechaNacimiento: Date,
+        genero: String,
+      },
+    ],
     // Situacion economica
     ingresos: {
-      tipo: { type: String, required: true },
-      cantidad: { type: Number, required: true },
+      tipo: {
+        type: String,
+        required: true,
+      },
+      cantidad: {
+        type: Number,
+        required: true,
+      },
     },
     gastos: {
       tipo: String,
@@ -69,33 +88,39 @@ const fichaSchema = mongoose.Schema(
         cargo: String,
         fechaInicio: Date,
       },
-      historial: [{
-        empresa: String,
-        cargo: String,
-        fechaInicio: Date,
-        fechaFin: Date,
-      }],
+      historial: [
+        {
+          empresa: String,
+          cargo: String,
+          fechaInicio: Date,
+          fechaFin: Date,
+        },
+      ],
     },
-    // Antecedentes de salud 
+    // Antecedentes de salud
     historialMedico: {
       alergias: String,
       condicionesMedicas: String,
       medicamentos: String,
-      hospitalizaciones: [{
-        motivo: String,
-        fecha: Date,
-      }],
+      hospitalizaciones: [
+        {
+          motivo: String,
+          fecha: Date,
+        },
+      ],
     },
     situacionFamiliar: {
       problemasFamiliares: String,
       historialViolencia: String,
     },
-    historialEducacion: [{
-      institucion: String,
-      nivelEducativo: String,
-      fechaInicio: Date,
-      fechaFin: Date,
-    }],
+    historialEducacion: [
+      {
+        institucion: String,
+        nivelEducativo: String,
+        fechaInicio: Date,
+        fechaFin: Date,
+      },
+    ],
     necesidades: {
       vivienda: String,
       salud: String,
@@ -107,12 +132,12 @@ const fichaSchema = mongoose.Schema(
   {
     versionKey: false,
   },
-  );
+);
 
 
 /** Modelo de datos 'Ficha' */
 const Ficha = mongoose.model("Ficha", fichaSchema);
 
-// Exporta el modelo de datos 'Ficha'
+
 module.exports = Ficha;
 
