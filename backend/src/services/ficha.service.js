@@ -50,8 +50,8 @@ async function createFicha(ficha) {
         observaciones, 
       } = ficha;
 
-    const fichaFound = await Ficha.findOne({ email: ficha.email });
-    if (fichaFound) return [null, "El usuario ya existe"];
+    const fichaFound = await Ficha.findOne({ rut: ficha.rut });
+    if (fichaFound) return [null, "La ficha social ya existe"];
 
     const newFicha = new Ficha({
         nombre,
@@ -75,16 +75,16 @@ async function createFicha(ficha) {
       });
     await newFicha.save();
 
-    return [newficha, null];
+    return [newFicha, null];
   } catch (error) {
     handleError(error, "ficha.service -> createficha");
   }
 }
 
 /**
- * Obtiene un usuario por su id de la base de datos
- * @param {string} Id del usuario
- * @returns {Promise} Promesa con el objeto de usuario
+ * Obtiene una ficha social por su id de la base de datos
+ * @param {string} Id de la ficha social
+ * @returns {Promise} Promesa con el objeto de fihca social
  */
 async function getFichaById(id) {
   try {
@@ -133,14 +133,14 @@ async function updateFicha(id, ficha) {
         observaciones,
      } = ficha;
 
-    const matchPassword = await Ficha.comparePassword(
+/**    const matchPassword = await Ficha.comparePassword(
       password,
       fichaFound.password,
     );
 
     if (!matchPassword) {
       return [null, "La contraseña no coincide"];
-    }
+    } */
 
     const fichaUpdated = await Ficha.findByIdAndUpdate(
       id,

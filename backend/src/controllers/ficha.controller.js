@@ -85,7 +85,7 @@ async function updateFicha(req, res) {
     const { error: bodyError } = fichaBodySchema.validate(body);
     if (bodyError) return respondError(req, res, 400, bodyError.message);
 
-    const [ficha, fichaError] = await FichaService.updateFicha(params.id, body);
+    const [ficha, fichaError] = await fichaService.updateFicha(params.id, body);
 
     if (fichaError) return respondError(req, res, 400, fichaError);
 
