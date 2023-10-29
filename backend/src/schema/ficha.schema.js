@@ -21,7 +21,7 @@ const fichaBodySchema = Joi.object({
     }),
     fechaNacimiento: Joi.date().required().messages({
       "any.required": "La fecha de nacimiento es obligatoria.",
-      "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
+      "date.base": "La fecha de nacimiento debe ser de tipo YYYY-MM-DD.",
     }),
     genero: Joi.string()
       .valid("Masculino", "Femenino", "Otro")
