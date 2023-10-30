@@ -5,6 +5,7 @@ const express = require("express");
 /** Enrutador de usuarios  */
 const userRoutes = require("./user.routes.js");
 const fichasRoutes = require("./ficha.routes.js");
+const agendamientosRoutes= require("./agendamientoRoutes.js");
 
 
 /** Enrutador de autenticación */
@@ -22,6 +23,8 @@ router.use("/users", authenticationMiddleware, userRoutes);
 router.use("/auth", authRoutes);
 // Define las rutas para la autenticación /api/fichasSociales
 router.use("/fichas", fichasRoutes);
+//Rutas para el agendamiento
+router.use("/agendamiento", agendamientosRoutes);
 
 
 // Exporta el enrutador
