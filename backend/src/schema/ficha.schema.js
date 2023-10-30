@@ -20,8 +20,9 @@ const fichaBodySchema = Joi.object({
       "number.max": "El RUT debe der se a lo mas 9 numeros.",
     }),
     fechaNacimiento: Joi.date().required().messages({
-      "any.required": "La fecha de nacimiento es obligatoria.",
-      "date.base": "La fecha de nacimiento debe ser de tipo YYYY-MM-DD.",
+      "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
+      "date.empty": "La fecha no puede estar vacía.",
+      "any.required": "La fecha es obligatoria.",
     }),
     genero: Joi.string()
       .valid("Masculino", "Femenino", "Otro")
@@ -69,9 +70,9 @@ const fichaBodySchema = Joi.object({
         "any.required": "El nombre es obligatorio.",
       }),
       fechaNacimiento: Joi.date().messages({
-        "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
-        "any.required": "La fecha de nacimiento es obligatoria.",
-
+        "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
+        "date.empty": "La fecha no puede estar vacía.",
+        "any.required": "La fecha es obligatoria.",
       }),
       genero: Joi.string().messages({
         "any.only": "El género proporcionado no es válido.",
@@ -85,9 +86,9 @@ const fichaBodySchema = Joi.object({
           "string.base": "El nombre debe ser de tipo string.",
         }),
         fechaNacimiento: Joi.date().messages({
-          "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
+          "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
           "date.empty": "La fecha no puede estar vacía.",
-
+          "any.required": "La fecha es obligatoria.",
         }),
         genero: Joi.string().messages({
           "any.only": "El género proporcionado no es válido.",
@@ -100,10 +101,10 @@ const fichaBodySchema = Joi.object({
     ),
     ingresos: Joi.object({
       tipo: Joi.string().required().messages({
-        "any.only": "El tipo de ingreso proporcionado no es válido.",
-        "any.required": "El tipo de ingreso es obligatorio.",
-        "string.empty": "El tipo de ingreso no puede estar vacío.",
-        "string.base": "El tipo de ingreso debe ser de tipo string.",
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "El tipo de dato es obligatorio.",
+        "string.empty": "El tipo de dato no puede estar vacío.",
+        "string.base": "El tipo de dato debe ser de tipo string.",
       }),
       cantidad: Joi.number().required().messages({
         "any.only": "La cantidad proporcionada no es válida.",
@@ -114,10 +115,10 @@ const fichaBodySchema = Joi.object({
     }),
     gastos: Joi.object({
       tipo: Joi.string().required().messages({
-        "any.only": "El tipo de gasto proporcionado no es válido.",
-        "any.required": "El tipo de gasto es obligatorio.",
-        "string.empty": "El tipo de gasto no puede estar vacío.",
-        "string.base": "El tipo de gasto debe ser de tipo string.",
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "El tipo de dato es obligatorio.",
+        "string.empty": "El tipo de dato no puede estar vacío.",
+        "string.base": "El tipo de dato debe ser de tipo string.",
       }),
       cantidad: Joi.number().required().messages({
         "any.only": "La cantidad proporcionada no es válida.",
@@ -141,9 +142,9 @@ const fichaBodySchema = Joi.object({
           "string.base": "El cargo debe ser de tipo string.",
           }),
         fechaInicio: Joi.date().required().messages({
-          "date.base": "La fecha de nacimiento debe ser de tipo AAAA-MM-DD.",
+          "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
           "date.empty": "La fecha no puede estar vacía.",
-          "any.required": "La fecha de inicio es obligatoria.",
+          "any.required": "La fecha es obligatoria.",
         }),
       }),
       historial: Joi.array().items(
