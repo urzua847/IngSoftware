@@ -10,7 +10,7 @@ const reservaSchema = mongoose.Schema({
     required: true,
   },
   horaCita: {
-    type: String, // Puedes usar un formato específico para las horas
+    type: String, 
     required: true,
   },
   propositoCita: {
