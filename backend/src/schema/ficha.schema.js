@@ -14,7 +14,7 @@ const fichaBodySchema = Joi.object({
     }),
     rut: Joi.string().required().min(9).max(9).messages({
       "any.required": "El RUT es obligatorio.",
-      "string.empty": "El RUT no puede estar vacío.",
+      "number.empty": "El RUT no puede estar vacío.",
       "number.base": "El RUT debe ser de tipo numérico.",
       "number.min": "El RUT debe der se al menos 9 numeros.",
       "number.max": "El RUT debe der se a lo mas 9 numeros.",
@@ -66,9 +66,12 @@ const fichaBodySchema = Joi.object({
     conyuge: Joi.object({
       nombre: Joi.string().messages({
         "string.empty": "El nombre no puede estar vacío.",
+        "any.required": "El nombre es obligatorio.",
       }),
       fechaNacimiento: Joi.date().messages({
         "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
+        "any.required": "La fecha de nacimiento es obligatoria.",
+
       }),
       genero: Joi.string().messages({
         "any.only": "El género proporcionado no es válido.",
@@ -77,7 +80,9 @@ const fichaBodySchema = Joi.object({
     hijos: Joi.array().items(
       Joi.object({
         nombre: Joi.string().messages({
+          "any.required": "El nombre es obligatorio.",
           "string.empty": "El nombre no puede estar vacío.",
+          "string.base": "El nombre debe ser de tipo string.",
         }),
         fechaNacimiento: Joi.date().messages({
           "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
@@ -86,63 +91,190 @@ const fichaBodySchema = Joi.object({
         }),
         genero: Joi.string().messages({
           "any.only": "El género proporcionado no es válido.",
+          "any.required": "El género es obligatorio.",
+          "string.empty": "El género no puede estar vacío.",
+          "string.base": "El género debe ser de tipo string.",
           }),
 
       }),
     ),
     ingresos: Joi.object({
-      tipo: Joi.string().required(),
-      cantidad: Joi.number().required(),
+      tipo: Joi.string().required().messages({
+        "any.only": "El tipo de ingreso proporcionado no es válido.",
+        "any.required": "El tipo de ingreso es obligatorio.",
+        "string.empty": "El tipo de ingreso no puede estar vacío.",
+        "string.base": "El tipo de ingreso debe ser de tipo string.",
+      }),
+      cantidad: Joi.number().required().messages({
+        "any.only": "La cantidad proporcionada no es válida.",
+        "any.required": "La cantidad es obligatoria.",
+        "number.empty": "La cantidad no puede estar vacía.",
+        "number.base": "La cantidad debe ser de tipo numerico.",
+      }),        
     }),
     gastos: Joi.object({
-      tipo: Joi.string(),
-      cantidad: Joi.number(),
+      tipo: Joi.string().required().messages({
+        "any.only": "El tipo de gasto proporcionado no es válido.",
+        "any.required": "El tipo de gasto es obligatorio.",
+        "string.empty": "El tipo de gasto no puede estar vacío.",
+        "string.base": "El tipo de gasto debe ser de tipo string.",
+      }),
+      cantidad: Joi.number().required().messages({
+        "any.only": "La cantidad proporcionada no es válida.",
+        "any.required": "La cantidad es obligatoria.",
+        "number.empty": "La cantidad no puede estar vacía.",
+        "number.base": "La cantidad debe ser de tipo numerico.",
+      }),
     }),
     empleo: Joi.object({
       actual: Joi.object({
-        empresa: Joi.string(),
-        cargo: Joi.string(),
-        fechaInicio: Joi.date(),
+        empresa: Joi.string().required().messages({
+          "any.only": "La empresa proporcionada no es válido.",
+          "any.required": "La empresa es obligatoria.",
+          "string.empty": "La empresa no puede estar vacío.",
+          "string.base": "La empresa debe ser de tipo string.",
+          }),
+        cargo: Joi.string().required().messages({
+          "any.only": "El cargo proporcionado no es válido.",
+          "any.required": "El cargo es obligatorio.",
+          "string.empty": "El cargo no puede estar vacío.",
+          "string.base": "El cargo debe ser de tipo string.",
+          }),
+        fechaInicio: Joi.date().required().messages({
+          "date.base": "La fecha de nacimiento debe ser de tipo AAAA-MM-DD.",
+          "date.empty": "La fecha no puede estar vacía.",
+          "any.required": "La fecha de inicio es obligatoria.",
+        }),
       }),
       historial: Joi.array().items(
         Joi.object({
-          empresa: Joi.string(),
-          cargo: Joi.string(),
-          fechaInicio: Joi.date(),
-          fechaFin: Joi.date(),
+          empresa: Joi.string().required().messages({
+            "any.required": "La empresa es obligatoria.",
+            "string.empty": "La empresa no puede estar vacía.",
+            "string.base": "La empresa debe ser de tipo string.",
+            }),
+          cargo: Joi.string().required().messages({
+            "any.only": "El cargo proporcionado no es válido.",
+            "any.required": "El cargo es obligatorio.",
+            "string.empty": "El cargo no puede estar vacío.",
+            "string.base": "El cargo debe ser de tipo string.",
+            }),
+          fechaInicio: Joi.date().required().messages({
+            "date.base": "La fecha de inicio debe ser de tipo AAAA-MM-DD.",
+            "date.empty": "La fecha no puede estar vacía.",
+            "any.required": "La fecha de inicio es obligatoria.",
+            }),
+          fechaFin: Joi.date().required().messages({
+            "date.base": "La fecha de fin debe ser de tipo AAAA-MM-DD.",
+            "date.empty": "La fecha no puede estar vacía.",
+            "any.required": "La fecha de inicio es obligatoria.",
+            }),
         }),
       ),
     }),
     historialMedico: Joi.object({
-      alergias: Joi.string(),
-      condicionesMedicas: Joi.string(),
-      medicamentos: Joi.string(),
+      alergias: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+        }),
+      condicionesMedicas: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+        }),
+      medicamentos: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+        }),
       hospitalizaciones: Joi.array().items(
         Joi.object({
-          motivo: Joi.string(),
-          fecha: Joi.date(),
+          motivo: Joi.string().required().messages({
+            "any.only": "El tipo de dato proporcionado no es válido.",
+            "any.required": "este campo es obligatorio.",
+            "string.empty": "este campo no puede estar vacío.",
+            "string.base": "este campo debe ser de tipo string.",
+            }),
+          fecha: Joi.date().required().messages({
+            "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
+            "date.empty": "La fecha no puede estar vacía.",
+            "any.required": "La fecha es obligatoria.",
+            }),
         }),
       ),
     }),
     situacionFamiliar: Joi.object({
-      problemasFamiliares: Joi.string(),
-      historialViolencia: Joi.string(),
+      problemasFamiliares: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+        }),
+      historialViolencia: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+      }),
     }),
     historialEducacion: Joi.array().items(
       Joi.object({
-        institucion: Joi.string(),
-        nivelEducativo: Joi.string(),
-        fechaInicio: Joi.date(),
-        fechaFin: Joi.date(),
+        institucion: Joi.string().required().messages({
+          "any.only": "El tipo de dato proporcionado no es válido.",
+          "any.required": "este campo es obligatorio.",
+          "string.empty": "este campo no puede estar vacío.",
+          "string.base": "este campo debe ser de tipo string.",
+          }),
+        nivelEducativo: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+        }),
+        fechaInicio: Joi.date().required().messages({
+          "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
+          "date.empty": "La fecha no puede estar vacía.",
+          "any.required": "La fecha es obligatoria.",
+          }),
+        fechaFin: Joi.date().required().messages({
+          "date.base": "La fecha debe ser de tipo AAAA-MM-DD.",
+          "date.empty": "La fecha no puede estar vacía.",
+          "any.required": "La fecha es obligatoria.",
+          }),
       }),
     ),
     necesidades: Joi.object({
-      vivienda: Joi.string(),
-      salud: Joi.string(),
-      educacion: Joi.string(),
-      otros: Joi.string(),
+      vivienda: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+          }),
+      salud: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+         }),
+      educacion: Joi.string().required().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "any.required": "este campo es obligatorio.",
+        "string.empty": "este campo no puede estar vacío.",
+        "string.base": "este campo debe ser de tipo string.",
+         }),
+      otros: Joi.string().messages({
+        "any.only": "El tipo de dato proporcionado no es válido.",
+        "string.base": "este campo debe ser de tipo string.",
+      }),
     }),
-    observaciones: Joi.string(),
+    observaciones: Joi.string().messages({
+      "any.only": "El tipo de dato proporcionado no es válido.",
+      "string.base": "este campo debe ser de tipo string.",
+      }),
   });
 
   /**
