@@ -2,13 +2,12 @@ const mongoose = require("mongoose");
 
 const postulacionSchema = new mongoose.Schema(
   {
-
     nombre: {
       type: String,
       required: true,
     },
-    edad: {
-      type: Number,
+    fechaNacimiento: {
+      type: Date,  
       required: true,
     },
     genero: {

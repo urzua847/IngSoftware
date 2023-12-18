@@ -22,6 +22,10 @@ async function getPostulaciones() {
  */
 async function createPostulacion(postulacion) {
   try {
+    // Verificar si la postulación ya existe
+    const postulacionFound = await Postulacion.findOne({ email: postulacion.email });
+    if (postulacionFound) return [null, "La postulación ya existe"];
+
     const newPostulacion = new Postulacion(postulacion);
     await newPostulacion.save();
     return [newPostulacion, null];

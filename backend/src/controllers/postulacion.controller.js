@@ -9,7 +9,7 @@ const { handleError } = require("../utils/errorHandler");
  * @param {Object} req - Objeto de petición
  * @param {Object} res - Objeto de respuesta
  */
-async function getPostulaciones(req, res) {
+async function getPostulacion(req, res) {
   try {
     const [postulaciones, errorPostulaciones] = await PostulacionService.getPostulaciones();
     if (errorPostulaciones) return respondError(req, res, 404, errorPostulaciones);
@@ -125,7 +125,7 @@ async function deletePostulacion(req, res) {
 }
 
 module.exports = {
-  getPostulaciones,
+  getPostulacion,
   createPostulacion,
   getPostulacionById,
   updatePostulacion,

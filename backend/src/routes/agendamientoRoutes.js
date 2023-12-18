@@ -1,20 +1,15 @@
-'use strict';
+const express = require("express");
+const agendamientoController = require("../controllers/agendamientoController");
 
-const express = require('express');
 const router = express.Router();
-const agendamientosController = require('../controllers/agendamientoController');
 
-const authorizationMiddleware = require('../middlewares/authorization.middleware');
-const authenticationMiddleware = require('../middlewares/authentication.middleware');
+// Rutas sin middleware de autenticación
+router.get("/obteneragendamiento", agendamientoController.getAllAgendamientos);
+router.get("/obtenerdataagendamiento:id", agendamientoController.getAgendamientoById);
 
-// Define el middleware de autenticación para todas las rutas
-router.use(authenticationMiddleware);
-
-// Rutas para los agendamientos
-router.get('/', agendamientosController.getAllAgendamientos);
-router.post('/', authorizationMiddleware.isAdmin, agendamientosController.createAgendamiento);
-router.get('/:id', agendamientosController.getAgendamientoById);
-router.put('/:id', authorizationMiddleware.isAdmin, agendamientosController.updateAgendamiento);
-router.delete('/:id', authorizationMiddleware.isAdmin, agendamientosController.deleteAgendamiento);
+// Rutas con middleware de autenticación y autorización
+router.post("/agregaragendamiento", agendamientoController.createAgendamiento);
+router.put("/actualizaagendamiento:id", agendamientoController.updateAgendamiento);
+router.delete("/borraragendamiento:id", agendamientoController.deleteAgendamiento);
 
 module.exports = router;
