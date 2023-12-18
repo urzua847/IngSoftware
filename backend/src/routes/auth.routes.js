@@ -13,5 +13,8 @@ router.post("/login", authController.login);
 router.post("/logout", authController.logout);
 router.get("/refresh", authController.refresh);
 
+// Agrega la ruta para el registro
+router.post("/register", authController.register);
+
 // Exporta el enrutador
 module.exports = router;

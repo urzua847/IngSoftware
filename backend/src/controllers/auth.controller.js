@@ -5,7 +5,7 @@ const { handleError } = require("../utils/errorHandler");
 
 /** Servicios de autenticación */
 const AuthServices = require("../services/auth.service");
-const { authLoginBodySchema } = require("../schema/auth.schema");
+const { authLoginBodySchema, authRegisterBodySchema } = require("../schema/auth.schema");
 
 /**
  * Inicia sesión con un usuario.
@@ -79,8 +79,33 @@ async function refresh(req, res) {
   }
 }
 
+/**
+ * Registra un nuevo usuario.
+ * @async
+ * @function register
+ * @param {Object} req - Objeto de petición
+ * @param {Object} res - Objeto de respuesta
+ */
+async function register(req, res) {
+  try {
+    const { body } = req;
+    const { error: bodyError } = authRegisterBodySchema.validate(body);
+    if (bodyError) return respondError(req, res, 400, bodyError.message);
+
+    const error = await AuthServices.register(body);
+
+    if (error) return respondError(req, res, 400, error);
+
+    respondSuccess(req, res, 201, { message: "Usuario registrado exitosamente." });
+  } catch (error) {
+    handleError(error, "auth.controller -> register");
+    respondError(req, res, 400, error.message);
+  }
+}
+
 module.exports = {
   login,
   logout,
   refresh,
+  register,
 };

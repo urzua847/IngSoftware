@@ -37,7 +37,7 @@ const postulacionBodySchema = Joi.object({
   documentos: Joi.string().allow("").required().messages({
     "array.base": "Los documentos deben ser de tipo array.",
     "array.includes": "Los documentos deben ser de tipo string.",
-    "any.required": "Los documentos son obligatorio.",
+    "any.required": "Los documentos son obligatorios.",
   }),
   
   beneficioSolicitado: Joi.string().required().messages({
