@@ -9,10 +9,10 @@ const postulacionBodySchema = Joi.object({
     "any.required": "El nombre es obligatorio.",
     "string.base": "El nombre debe ser de tipo string.",
   }),
-  edad: Joi.number().required().messages({
-    "number.empty": "La edad no puede estar vacía.",
-    "any.required": "La edad es obligatoria.",
-    "number.base": "La edad debe ser de tipo numérico.",
+  fechaNacimiento: Joi.date().required().messages({
+    "date.empty": "La fecha de nacimiento no puede estar vacía.",
+    "any.required": "La fecha de nacimiento es obligatoria.",
+    "date.base": "La fecha de nacimiento debe ser de tipo fecha.",
   }),
   genero: Joi.string().valid("Masculino", "Femenino").required().messages({
     "string.empty": "El género no puede estar vacío.",
