@@ -11,10 +11,10 @@ const authenticationMiddleware = require('../middlewares/authentication.middlewa
 router.use(authenticationMiddleware);
 
 // Rutas para los agendamientos
-router.get('/', agendamientosController.getAllAgendamientos);
-router.post('/', authorizationMiddleware.isAdmin, agendamientosController.createAgendamiento);
-router.get('/:id', agendamientosController.getAgendamientoById);
-router.put('/:id', authorizationMiddleware.isAdmin, agendamientosController.updateAgendamiento);
-router.delete('/:id', authorizationMiddleware.isAdmin, agendamientosController.deleteAgendamiento);
+router.get('/agendamientos', authorizationMiddleware.isAdmin, agendamientosController.getAllAgendamientos);
+router.post('/agendamientos', authorizationMiddleware.isAdmin, agendamientosController.createAgendamiento);
+router.get('/agendamientos/:id', agendamientosController.getAgendamientoById);
+router.put('/agendamientos/:id', authorizationMiddleware.isAdmin, agendamientosController.updateAgendamiento);
+router.delete('/agendamientos/:id', authorizationMiddleware.isAdmin, agendamientosController.deleteAgendamiento);
 
 module.exports = router;
