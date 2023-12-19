@@ -5,6 +5,7 @@ const postulacionSchema = new mongoose.Schema(
     nombre: {
       type: String,
       required: true,
+      unique: true,
     },
     fechaNacimiento: {
       type: Date,  
@@ -18,10 +19,12 @@ const postulacionSchema = new mongoose.Schema(
     telefono: {
       type: String,
       required: true,
+      unique: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     direccion: {
       type: String,
