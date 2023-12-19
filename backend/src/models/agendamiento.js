@@ -5,6 +5,7 @@ const agendamientoSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User', // Referencia al modelo User con rol "user"
     required: true,
+    unique: true,
   },
   fechaVisita: {
     type: Date,

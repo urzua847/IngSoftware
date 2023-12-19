@@ -16,5 +16,4 @@ router.post('/agendamientos', authorizationMiddleware.isAdmin, agendamientosCont
 router.get('/agendamientos/:id', agendamientosController.getAgendamientoById);
 router.put('/agendamientos/:id', authorizationMiddleware.isAdmin, agendamientosController.updateAgendamiento);
 router.delete('/agendamientos/:id', authorizationMiddleware.isAdmin, agendamientosController.deleteAgendamiento);
-
 module.exports = router;

@@ -1,5 +1,6 @@
 'use strict';
 
+const agendamiento = require('../models/agendamiento');
 // Importa el modelo de datos de Agendamiento
 const Agendamiento = require('../models/agendamiento');
 const { handleError } = require('../utils/errorHandler');
@@ -9,6 +10,9 @@ async function getAgendamientos() {
   try {
     const agendamientos = await Agendamiento.find();
     if (!agendamientos) return [null, 'No hay agendamientos'];
+
+    const agendamientoFound = await Agendamiento.findOne({ postulanteId: agendamiento.postulanteId });
+    if (agendamientoFoundFound) return [null, "El Agendamiento ya existe"];
 
     return [agendamientos, null];
   } catch (error) {
